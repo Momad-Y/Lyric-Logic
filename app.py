@@ -1,10 +1,10 @@
 import streamlit as st
-import tensorflow.keras.models as models
+import keras.models as models
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem import SnowballStemmer
-from tensorflow.keras.preprocessing.sequence import (
+from keras.utils import (
     pad_sequences,
 )
 import pickle

@@ -11,6 +11,7 @@ import pickle
 from PIL import Image
 
 nltk.download("stopwords")
+nltk.download("wordnet")
 
 artists = [
     "Eminem a.k.a. Slim Shady a.k.a. Marshall Mathers",

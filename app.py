@@ -111,8 +111,6 @@ if st.button("Predict artist") and len(lyrics) > 0:
     prediction = model.predict(lyrics)
     prediction = prediction.argmax(axis=1)
 
-    print(prediction)
-
     with left_column:
         st.write(f"The predicted artist is: {artists[prediction[0]]}")
     with right_column:

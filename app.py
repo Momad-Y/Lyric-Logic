@@ -72,6 +72,14 @@ def preprocess_lyrics(lyrics):
     return lyrics
 
 
+# Set app title and favicon
+st.set_page_config(
+    page_title="Lyric Logic",
+    page_icon="./imgs/notes.png",
+    layout="centered",
+    initial_sidebar_state="expanded",
+)
+
 st.title("Lyric Logic 🎶")
 st.write(
     "This is a simple web app that uses a neural networks to predict the artist based on the lyrics of a song."

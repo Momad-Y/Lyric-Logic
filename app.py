@@ -101,15 +101,18 @@ if st.button("Predict artist") and len(lyrics) > 0:
 
     if selected_model == "CNN with GloVe":
         model = models.load_model(
-            "./models/Song Lyrics Classification CNN Model with GloVe Embeddings.h5"
+            "./models/Song Lyrics Classification CNN Model with GloVe Embeddings.h5",
+            compile=False,
         )
     elif selected_model == "CNN with learned embeddings":
         model = models.load_model(
-            "./models/Song Lyrics Classification CNN Model with Learnable Embeddings.h5"
+            "./models/Song Lyrics Classification CNN Model with Learnable Embeddings.h5",
+            compile=False,
         )
     elif selected_model == "LSTM with learned embeddings":
         model = models.load_model(
-            "./models/Song Lyrics Classification LSTM Model with Learnable Embeddings.h5"
+            "./models/Song Lyrics Classification LSTM Model with Learnable Embeddings.h5",
+            compile=False,
         )
 
     prediction = model.predict(lyrics)

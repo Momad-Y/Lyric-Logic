@@ -1,5 +1,6 @@
 import streamlit as st
 import tensorflow.keras.models as models
+import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.stem import SnowballStemmer
@@ -8,6 +9,8 @@ from tensorflow.keras.preprocessing.sequence import (
 )
 import pickle
 from PIL import Image
+
+nltk.download("stopwords")
 
 artists = [
     "Eminem a.k.a. Slim Shady a.k.a. Marshall Mathers",

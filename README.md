@@ -2,7 +2,7 @@
 
 ## Project Description
 
-This project focuses on building a Lyric Classification Model using LSTM (Long Short-Term Memory) and CNN (Convolutional Neural Networks). The model's purpose is to identify which artist a given lyric belongs to, rather than generating new lyrics. Users can input lyrics and the model will predict the associated artist, aligning with the course's focus on the practical implementation of Natural Language Processing (NLP) tasks.
+This project focuses on building a Lyric Classification Model using LSTM (Long Short-Term Memory) and CNN (Convolutional Neural Networks). The models' purpose is to identify which artist a given lyric belongs to. Users can input lyrics and the models will predict the associated artist, aligning with the course's focus on the practical implementation of Natural Language Processing (NLP) tasks.
 
 ## Methodology (Tech Stack)
 

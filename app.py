@@ -16,33 +16,33 @@ nltk.download("wordnet")
 artists = [
     "Eminem a.k.a. Slim Shady a.k.a. Marshall Mathers",
     "Taylor Swift a.k.a. Kanye's nemesis",
-    "Drake a.k.a. Kendrick's number one fan",
+    "Drake a.k.a. BBL Drizzy",
     "Beyonce a.k.a. Jay-Z's wife",
     "Rihanna a.k.a. Eminem's love interest",
-    "Lady Gaga (Who still listens to her?)",
+    "Lady Gaga",
     "Justin Bieber a.k.a. the baby",
-    "Coldplay a.k.a. the one with the yellow stars",
+    "Coldplay",
     "Katy Perry a.k.a. the one with the fireworks",
-    "Nicki Minaj a.k.a. tbh idrc",
-    "Ariana Grande a.k.a. the one with the ponytail",
-    "Ed Sheeran a.k.a. the ginger",
+    "Nicki Minaj",
+    "Ariana Grande",
+    "Ed Sheeran",
     "Dua Lipa a.k.a. elfnana",
 ]
 
 artists_images = [
-    Image.open("./imgs/em.jpg"),
-    Image.open("./imgs/swift.jpg"),
-    Image.open("./imgs/drake.jpg"),
-    Image.open("./imgs/beyonce.jpg"),
-    Image.open("./imgs/rihanna.jpg"),
-    Image.open("./imgs/lg.jpg"),
-    Image.open("./imgs/jb.jpg"),
-    Image.open("./imgs/chris.jpg"),
-    Image.open("./imgs/kp.jpg"),
-    Image.open("./imgs/nicki.jpg"),
-    Image.open("./imgs/ariana.jpg"),
-    Image.open("./imgs/edsheeran.jpg"),
-    Image.open("./imgs/dualipa.jpg"),
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/em.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/swift.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/drake.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/beyonce.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/rihanna.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/lg.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/jb.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/chris.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/kp.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/nicki.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/ariana.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/edsheeran.jpg",
+    "https://raw.githubusercontent.com/Momad-Y/Lyric-Logic/refs/heads/main/imgs/dualipa.jpg",
 ]
 
 
@@ -72,64 +72,134 @@ def preprocess_lyrics(lyrics):
     return lyrics
 
 
+# Load all models at startup
+@st.cache_resource
+def load_models():
+    models_dict = {}
+    models_dict["CNN with GloVe"] = models.load_model(
+        "./models/Song Lyrics Classification CNN Model with GloVe Embeddings.h5",
+        compile=False,
+    )
+    models_dict["CNN with learned embeddings"] = models.load_model(
+        "./models/Song Lyrics Classification CNN Model with Learnable Embeddings.h5",
+        compile=False,
+    )
+    models_dict["LSTM with learned embeddings"] = models.load_model(
+        "./models/Song Lyrics Classification LSTM Model with Learnable Embeddings.h5",
+        compile=False,
+    )
+    return models_dict
+
+
 # Set app title and favicon
 st.set_page_config(
     page_title="Lyric Logic",
     page_icon="./imgs/notes.png",
-    layout="centered",
+    layout="wide",
     initial_sidebar_state="expanded",
 )
 
-st.title("Lyric Logic 🎶")
-st.write(
-    "This is a simple web app that uses a neural networks to predict the artist based on the lyrics of a song."
+# Load all models
+all_models = load_models()
+
+
+# Reduce top margin and customize info block styling
+st.markdown(
+    """
+<style>
+    .main .block-container {
+        padding-top: 1.rem;
+    }
+    
+</style>
+""",
+    unsafe_allow_html=True,
 )
+
+st.title("Lyric Logic 🎵")
+st.write(
+    "Lyric Logic is an AI-powered app that identifies music artists based on song lyrics, blending language understanding with a love for music."
+)
+
+st.sidebar.image("./imgs/logo.png", caption="Lyric Logic Logo", use_column_width=True)
 
 selected_model = st.sidebar.selectbox(
     "Select the model to use",
     ["CNN with GloVe", "CNN with learned embeddings", "LSTM with learned embeddings"],
 )
 st.sidebar.write("## Artists")
-st.sidebar.write("The model can predict the following artists:")
+st.sidebar.write("The model can predict the lyrics of the following artists:")
 st.sidebar.write(
     "1. Eminem\n2. Taylor Swift\n3. Drake\n4. Beyonce\n5. Rihanna\n6. Lady Gaga\n7. Justin Bieber\n8. Coldplay\n9. Katy Perry\n10. Nicki Minaj\n11. Ariana Grande\n12. Ed Sheeran\n13. Dua Lipa"
 )
 
-st.write("## Enter the lyrics")
-lyrics = st.text_area("Enter the lyrics of the song you want to predict", height=150)
+st.sidebar.markdown("## Made By:")
+st.sidebar.markdown("##### **Mohamed Y Abdelnasser**")
+st.sidebar.markdown(
+    "##### [Github](https://github.com/Momad-Y) | [LinkedIn](https://www.linkedin.com/in/mohamed-y-abdelnasser/) | [Email](mailto:Mohamed.Y.Abdelnasser@gmail.com)"
+)
+st.sidebar.markdown("## Disclaimer:")
+st.sidebar.markdown(
+    "##### This app is for educational purposes only. The model is not perfect and the results are not guaranteed to be accurate."
+)
+st.sidebar.markdown("## [GitHub Repository](https://github.com/Momad-Y/Lyric-Logic)")
 
-if st.button("Predict artist") and len(lyrics) > 0:
-    left_column, right_column = st.columns(2)
+# Create two columns for input and results
+input_col, results_col = st.columns([3, 2])
 
-    if len(lyrics) > max_sequence_length:
-        with left_column:
-            st.write("The lyrics are too long. Please enter a shorter text.")
+with input_col:
+    st.write("## Enter the lyrics")
+    lyrics = st.text_area(
+        "Enter the lyrics of the song you want to predict, or make up some lyrics to see how the model performs.",
+        height=270,
+    )
 
-    lyrics = preprocess_lyrics(lyrics)
+    predict_button = st.button("Predict artist", use_container_width=True)
 
-    if selected_model == "CNN with GloVe":
-        model = models.load_model(
-            "./models/Song Lyrics Classification CNN Model with GloVe Embeddings.h5",
-            compile=False,
-        )
-    elif selected_model == "CNN with learned embeddings":
-        model = models.load_model(
-            "./models/Song Lyrics Classification CNN Model with Learnable Embeddings.h5",
-            compile=False,
-        )
-    elif selected_model == "LSTM with learned embeddings":
-        model = models.load_model(
-            "./models/Song Lyrics Classification LSTM Model with Learnable Embeddings.h5",
-            compile=False,
-        )
+with results_col:
+    st.write("## Prediction Results")
 
-    prediction = model.predict(lyrics)
-    prediction = prediction.argmax(axis=1)
+    if predict_button and len(lyrics) > 0:
+        if len(lyrics) > max_sequence_length:
+            st.warning("The lyrics are too long. Please enter a shorter text.")
+        else:
+            # Show loading spinner
+            with st.spinner("Analyzing lyrics..."):
+                processed_lyrics = preprocess_lyrics(lyrics)
 
-    with left_column:
-        st.write(f"The predicted artist is: {artists[prediction[0]]}")
-    with right_column:
-        st.image(
-            artists_images[prediction[0]],
-            use_column_width=True,
-        )
+                # Get the selected model from pre-loaded models
+                model = all_models[selected_model]
+                prediction = model.predict(processed_lyrics)
+                prediction_index = prediction.argmax(axis=1)
+
+                # Display results
+                st.image(
+                    artists_images[prediction_index[0]],
+                    caption=f"Artist: {artists[prediction_index[0]]}",
+                    width=300,
+                )
+
+                # Show confidence score
+                confidence = prediction.max() * 100
+                if confidence < 50:
+                    st.write(f"Confidence: {100-confidence:.1f}%")
+                else:
+                    st.write(f"Confidence: {confidence:.1f}%")
+
+    elif predict_button and len(lyrics) == 0:
+        st.warning("Please enter some lyrics to predict the artist.")
+
+# Footer
+st.markdown("---")
+st.markdown(
+    """
+    <div style='text-align: center; padding: 20px; margin-top: -40px;'>
+        <p style='margin: 0; color: #666; font-size: 14px;'>
+            🎵 <strong>Lyric Logic</strong> - AI-Powered Artist Identification 🎵<br>
+            Built with ❤️ using Streamlit, TensorFlow, and NLTK<br>
+            <em>© 2024 Mohamed Y Abdelnasser. All rights reserved.</em>
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True,
+)

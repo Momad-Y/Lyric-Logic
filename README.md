@@ -1,6 +1,6 @@
-<center>
+<p align="center">
     <img src="./imgs/logo.png" alt="Lyric-Logic Logo" width="300" height="300">
-</center>
+</p>
 
 # Lyric-Logic
 

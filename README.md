@@ -1,3 +1,7 @@
+<center>
+    <img src="./imgs/logo.png" alt="Lyric-Logic Logo" width="300" height="300">
+</center>
+
 # Lyric-Logic
 
 ## Project Description
@@ -17,12 +21,6 @@ This project focuses on building a Lyric Classification Model using LSTM (Long S
 -   **NLTK** 3.8.1 used for natural language processing tasks.
 -   **Scikit-learn** 1.4.2 used for machine learning tasks.
 -   **Streamlit** 1.35.0 used for building the web application.
-
-All the above packages can be installed using the following command:
-
-```bash
-pip install -r requirements.txt
-```
 
 ## Data-Set
 
@@ -76,15 +74,42 @@ The project is structured as follows:
 
         ![Web Application](./imgs/web-app-example.png)
 
-    -   The web application can be accessed by running the following command:
+## Usage
 
-        ```bash
-        streamlit run app.py
-        ```
+### Running the Web Application Locally
 
-        or by visiting the following link: [Lyric-Logic Web Application](https://lyric-logic.streamlit.app/)
+**Step 1:** Clone the repository
+
+```bash
+git clone https://github.com/Momad-Y/Lyric-Logic.git
+```
+
+**Step 2:** Navigate to the project directory
+
+```bash
+cd Lyric-Logic
+```
+
+**Step 3:** Install the required dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+**Step 4:** Run the Streamlit web application
+
+```bash
+streamlit run app.py
+```
+
+### Using the Online Web Application
+
+[https://lyric-logic.streamlit.app/](https://lyric-logic.streamlit.app/)
 
 ## References
 
 -   [Kaggle: Song Lyrics Dataset](https://www.kaggle.com/datasets/deepshah16/song-lyrics-dataset/data)
 -   [Streamlit Documentation](https://docs.streamlit.io/en/stable/)
+-   [TensorFlow Documentation](https://www.tensorflow.org/tutorials)
+-   [NLTK Documentation](https://www.nltk.org/documentation/)
+-   [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)

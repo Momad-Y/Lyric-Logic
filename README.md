@@ -10,17 +10,17 @@ This project focuses on building a Lyric Classification Model using LSTM (Long S
 
 ## Methodology (Tech Stack)
 
--   **Python** 3.11.3 (64-bit)
-    -   IPython 8.24.0
-    -   Jupyter Notebook 8.6.1
--   **NumPy** 1.26.4 used for dealing with ndarrays.
--   **Pandas** 2.2.2 used for data manipulation and analysis.
--   **Matplotlib** 3.8.4 used for data visualization.
--   **TensorFlow** 2.16.1 used for building and training the model.
--   **Keras** 3.3.3 used for integrating TensorFlow and building the model.
--   **NLTK** 3.8.1 used for natural language processing tasks.
--   **Scikit-learn** 1.4.2 used for machine learning tasks.
--   **Streamlit** 1.35.0 used for building the web application.
+- **Python** 3.11.3 (64-bit)
+    - IPython 8.24.0
+    - Jupyter Notebook 8.6.1
+- **NumPy** 1.26.4 used for dealing with ndarrays.
+- **Pandas** 2.2.2 used for data manipulation and analysis.
+- **Matplotlib** 3.8.4 used for data visualization.
+- **TensorFlow** 2.16.1 used for building and training the model.
+- **Keras** 3.3.3 used for integrating TensorFlow and building the model.
+- **NLTK** 3.8.1 used for natural language processing tasks.
+- **Scikit-learn** 1.4.2 used for machine learning tasks.
+- **Streamlit** 1.35.0 used for building the web application.
 
 ## Data-Set
 
@@ -30,13 +30,13 @@ The dataset can be downloaded from the following link: https://www.kaggle.com/da
 
 The dataset comprises the following columns:
 
--   **Artist:** The name of the artist.
--   **Title:** The title of the song.
--   **Album:** The album of the song.
--   **Date:** The release date of the song.
--   **Lyric:** The lyrics of the song.
--   **Year:** The year of the song.
--   **Unnamed: 0:** An additional column that can be ignored.
+- **Artist:** The name of the artist.
+- **Title:** The title of the song.
+- **Album:** The album of the song.
+- **Date:** The release date of the song.
+- **Lyric:** The lyrics of the song.
+- **Year:** The year of the song.
+- **Unnamed: 0:** An additional column that can be ignored.
 
 Data-set Cover:
 
@@ -46,31 +46,28 @@ Data-set Cover:
 
 The project is structured as follows:
 
--   **Including Necessary Libraries:** Importing the necessary libraries found in the requirements.txt file.
+- **Including Necessary Libraries:** Importing the necessary libraries found in the requirements.txt file.
 
--   **Loading the Dataset:** Loading the dataset from the CSV files and converting it to a Pandas DataFrame.
+- **Loading the Dataset:** Loading the dataset from the CSV files and converting it to a Pandas DataFrame.
 
--   **Data Cleaning:** Removing unnecessary columns from the dataset, and then removing the records with missing and duplicate values.
+- **Data Cleaning:** Removing unnecessary columns from the dataset, and then removing the records with missing and duplicate values.
 
--   **Data Visualization:** Visualizing the dataset using Matplotlib.
+- **Data Visualization:** Visualizing the dataset using Matplotlib.
 
--   **Data Preprocessing & Feature Extraction:** Preprocessing the dataset by tokenizing the lyrics, removing stopwords, and converting the lyrics to sequences.
+- **Data Preprocessing & Feature Extraction:** Preprocessing the dataset by tokenizing the lyrics, removing stopwords, and converting the lyrics to sequences.
+    - **Tokenization**
+    - **Stopwords Removal**
+    - **Sequences Conversion**
 
-    -   **Tokenization**
-    -   **Stopwords Removal**
-    -   **Sequences Conversion**
+- **Building the Model:** Building the model using the LSTM and CNN models.
 
--   **Building the Model:** Building the model using the LSTM and CNN models.
+- **Training the Model:** Training the model using the dataset and evaluating the model's performance.
+    - **CNN with GloVe Embedding**
+    - **CNN with learned embeddings**
+    - **LSTM with learned embeddings**
 
--   **Training the Model:** Training the model using the dataset and evaluating the model's performance.
-
-    -   **CNN with GloVe Embedding**
-    -   **CNN with learned embeddings**
-    -   **LSTM with learned embeddings**
-
--   **Web Application:** Building a web application using Streamlit to allow users to predict artist based on the lyrics. (app.py)
-
-    -   **Web Application Example:**
+- **Web Application:** Building a web application using Streamlit to allow users to predict artist based on the lyrics. (app.py)
+    - **Web Application Example:**
 
         ![Web Application](./imgs/web-app-example.png)
 
@@ -82,12 +79,14 @@ The project is structured as follows:
 
 ```bash
 git clone https://github.com/Momad-Y/Lyric-Logic.git
+cd Lyric-Logic
 ```
 
-**Step 2:** Navigate to the project directory
+**Step 2:** Create a virtual environment and activate it
 
 ```bash
-cd Lyric-Logic
+python -m venv venv
+source venv/bin/activate # On Windows use: venv\Scripts\activate
 ```
 
 **Step 3:** Install the required dependencies
@@ -108,8 +107,8 @@ streamlit run app.py
 
 ## References
 
--   [Kaggle: Song Lyrics Dataset](https://www.kaggle.com/datasets/deepshah16/song-lyrics-dataset/data)
--   [Streamlit Documentation](https://docs.streamlit.io/en/stable/)
--   [TensorFlow Documentation](https://www.tensorflow.org/tutorials)
--   [NLTK Documentation](https://www.nltk.org/documentation/)
--   [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)
+- [Kaggle: Song Lyrics Dataset](https://www.kaggle.com/datasets/deepshah16/song-lyrics-dataset/data)
+- [Streamlit Documentation](https://docs.streamlit.io/en/stable/)
+- [TensorFlow Documentation](https://www.tensorflow.org/tutorials)
+- [NLTK Documentation](https://www.nltk.org/documentation/)
+- [Scikit-learn Documentation](https://scikit-learn.org/stable/documentation.html)

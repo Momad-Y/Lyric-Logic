@@ -164,7 +164,4 @@ cython_debug/
 
 # Others
 *.docx
-*.pdf
 
-# Testing
-Testing/
